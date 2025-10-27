@@ -4,6 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Limpieza piso</title>
+
+  <!-- FAVICON -->
+  <link rel="icon" type="image/png" href="./img/mr-clean.png" />
+
+  <!-- ESTILOS -->
   <link rel="stylesheet" href="css/reset.css" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -13,7 +18,7 @@
   <header class="intro-flash">
     <h1>Gestión de limpieza ;)</h1>
 
-    <!-- 🔽 Flechas de scroll distribuidas -->
+    <!-- FLECHAS DE SCROLL -->
     <div class="scroll-arrows">
       <span class="arrow left">▼</span>
       <span class="arrow center">▼</span>
@@ -34,6 +39,14 @@
     <section id="historial">
       <h1>Historial</h1>
       <div id="historial-semanas"></div>
+    </section>
+
+    <!-- MENSAJE BETA -->
+    <section id="beta">
+      <p>
+        <strong>Versión BETA</strong> — cualquier sugerencia o feedback es recibido con los brazos abiertos 💫<br>
+        Escribid al grupo de WhatsApp del piso con vuestras ideas y encantado mejoraré la página ❤️
+      </p>
     </section>
   </main>
 
@@ -102,13 +115,12 @@ for (let i = 0; i < 46; i++) {
     overlay.addEventListener('click', cerrarModal);
     boxAlgoritmo.addEventListener('click', cerrarModal);
 
-    // Flechas de scroll: desaparecen muy pronto
-    const scrollArrows = document.querySelector('.scroll-arrows');
+    // Detectar scroll para ocultar flechas
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 10) { // 🔥 desaparece con scroll mínimo
-        scrollArrows.classList.add('hide');
+      if (window.scrollY > 50) {
+        document.body.classList.add('scrolled');
       } else {
-        scrollArrows.classList.remove('hide');
+        document.body.classList.remove('scrolled');
       }
     });
   </script>
