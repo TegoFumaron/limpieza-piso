@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Limpieza piso</title>
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- HEAD / TÍTULO PRINCIPAL -->
+  <header class="intro-flash">
+    <h1>Gestión de limpieza ;)</h1>
+
+    <!-- 🔽 Flechas de scroll distribuidas -->
+    <div class="scroll-arrows">
+      <span class="arrow left">▼</span>
+      <span class="arrow center">▼</span>
+      <span class="arrow right">▼</span>
+    </div>
+  </header>
+
+  <!-- SECCIÓN PRINCIPAL -->
+  <main class="content">
+    <h1>Esta semana</h1>
+    <p id="como-se-determina">¿Cómo se determina?</p>
+
+    <!-- TAREAS -->
+    <div id="asignaciones"></div>
+    <div id="descripcion-tareas"></div>
+
+    <!-- HISTORIAL -->
+    <section id="historial">
+      <h1>Historial</h1>
+      <div id="historial-semanas"></div>
+    </section>
+  </main>
+
+  <!-- OVERLAY + BOX DEL ALGORITMO -->
+  <div id="overlay"></div>
+
+  <div id="algoritmo-box">
+    <div class="grain-overlay"></div>
+    <h3>Algoritmo de rotación</h3>
+    <p>
+      El sistema de limpieza reparte las tareas de forma equitativa y rotativa entre todos los integrantes.<br><br>
+      Nadie repite la misma tarea dos semanas seguidas.<br>
+      La carga de trabajo se distribuye de manera justa.<br>
+      Las rotaciones son equilibradas hasta el final del ciclo.<br><br>
+      En caso de interrupciones o ausencias, la rotación continúa desde el punto actual.
+    </p>
+
+    <pre><code class="codigo">
+let rotaciones = [];
+let inicio = new Date(2025, 9, 13); // 13/10/2025
+let fin = new Date(2025, 9, 19);
+
+for (let i = 0; i < 46; i++) {
+  let asignacion = {};
+  let usadas = new Set();
+  for (let j = 0; j < tareas.length; j++) {
+    let persona = personas[(j + i) % personas.length];
+    while (usadas.has(persona)) {
+      i++;
+      persona = personas[(j + i) % personas.length];
+    }
+    usadas.add(persona);
+    asignacion[tareas[j]] = persona;
+  }
+  rotaciones.push({
+    semana: `${inicio.toLocaleDateString("es-ES")} — ${fin.toLocaleDateString("es-ES")}`,
+    asignaciones: asignacion
+  });
+  inicio.setDate(inicio.getDate() + 7);
+  fin.setDate(fin.getDate() + 7);
+}
+    </code></pre>
+  </div>
+
+  <!-- SCRIPT -->
+  <script src="script.js"></script>
+  <script>
+    const botonAlgoritmo = document.getElementById('como-se-determina');
+    const boxAlgoritmo = document.getElementById('algoritmo-box');
+    const overlay = document.getElementById('overlay');
+
+    // Mostrar modal
+    botonAlgoritmo.addEventListener('click', () => {
+      boxAlgoritmo.classList.add('show');
+      overlay.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    });
+
+    // Cerrar modal (en cualquier parte)
+    function cerrarModal() {
+      boxAlgoritmo.classList.remove('show');
+      overlay.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+
+    overlay.addEventListener('click', cerrarModal);
+    boxAlgoritmo.addEventListener('click', cerrarModal);
+
+    // Flechas de scroll: desaparecen muy pronto
+    const scrollArrows = document.querySelector('.scroll-arrows');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) { // 🔥 desaparece con scroll mínimo
+        scrollArrows.classList.add('hide');
+      } else {
+        scrollArrows.classList.remove('hide');
+      }
+    });
+  </script>
+</body>
+</html>

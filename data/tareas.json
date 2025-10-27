@@ -1,0 +1,23 @@
+{
+  "Baño": [
+    "Limpieza general (ducha, inodoro, pica, espejo, ventana, suelo, grifos y paredes)",
+    "Reponer jabón de manos",
+    "Reponer papel higiénico",
+    "Sacar y desinfectar el desagüe de la ducha",
+    "Anotar si hace falta comprar algo"
+  ],
+  "Salón, pasillo y lavadora": [
+    "Barrer y fregar",
+    "Limpiar polvo y muebles del salón, pasillo y entrada",
+    "Limpiar vidrios y espejos",
+    "Desinfectar el cajetín de la lavadora y el filtro",
+    "Anotar si hace falta comprar algo"
+  ],
+  "Cocina y basuras": [
+    "Limpiar pica, microondas, tostadora, horno y muebles",
+    "Fregar suelo y vidrios",
+    "Sacar basuras (orgánica, papel, rebuig, reciclables, vidrio)",
+    "Limpiar tachos por dentro y fuera",
+    "Anotar si hace falta comprar algo"
+  ]
+}
