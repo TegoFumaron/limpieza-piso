@@ -2,7 +2,7 @@
 .intro-flash {
   position: relative;
   height: 100vh;
-  background: #000;
+  background: linear-gradient(to bottom, #0e0e0e 0%, #000 100%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,51 +32,9 @@
   100% { color: #000; }
 }
 
-/* ======= FLECHAS DE SCROLL ======= */
-.scroll-arrows {
-  position: absolute;
-  bottom: 40px;
-  left: 0;
-  width: 100%;
-  pointer-events: none;
-  z-index: 10;
-  opacity: 0.9;
-  transition: opacity 0.3s ease;
-}
-
-.scroll-arrows .arrow {
-  position: absolute;
-  font-size: 1.7rem;
-  color: #e0e0e0;
-  animation: bounceArrow 1.5s infinite;
-}
-
-.scroll-arrows .arrow.left {
-  left: 10%;
-}
-
-.scroll-arrows .arrow.center {
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.scroll-arrows .arrow.right {
-  right: 10%;
-}
-
-@keyframes bounceArrow {
-  0%, 100% { transform: translateY(0); opacity: 1; }
-  50% { transform: translateY(8px); opacity: 0.6; }
-}
-
-body.scrolled .scroll-arrows {
-  opacity: 0;
-  pointer-events: none;
-}
-
 /* ====== GENERAL ====== */
 body {
-  background-color: #000;
+  background: linear-gradient(to bottom, #0e0e0e 0%, #000 100%);
   color: #e0e0e0;
   font-family: 'Segoe UI', Tahoma, sans-serif;
   text-align: center;
@@ -89,8 +47,8 @@ body {
 /* ====== SECCIÓN PRINCIPAL ====== */
 .content {
   min-height: 100vh;
-  padding: 8rem 5% 8rem 5%;
-  background-color: #000;
+  padding: 6rem 5% 8rem 5%;
+  background: linear-gradient(to bottom, #0e0e0e 0%, #000 100%);
   position: relative;
   z-index: 1;
 }
@@ -99,7 +57,7 @@ body {
   font-size: 2.4rem;
   font-weight: 700;
   text-transform: uppercase;
-  margin-bottom: 1rem;
+  margin-bottom: 3.5rem;
   letter-spacing: 1px;
 }
 
@@ -117,6 +75,44 @@ body {
   color: #fff;
 }
 
+/* ====== FLECHAS SCROLL ====== */
+.scroll-arrows {
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 80px;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.arrow {
+  font-size: 2rem;
+  color: #ccc;
+  opacity: 0.8;
+  animation: bounce 1.5s infinite;
+  cursor: default;
+}
+
+.arrow:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.arrow:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+body.scrolled .scroll-arrows {
+  opacity: 0;
+  pointer-events: none;
+}
+
 /* ====== CAJAS DE TAREAS ====== */
 #asignaciones {
   display: flex;
@@ -131,7 +127,7 @@ body {
 }
 
 .tarea-box {
-  background: #1e1e1e;
+  background: #1a1a1a;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
   flex: 1 1 30%;
@@ -213,7 +209,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: #1b1b1b;
+  background: #111;
   color: #eaeaea;
   border-radius: 15px;
   padding: 1.5rem 2rem;
@@ -256,6 +252,7 @@ body {
   overflow-x: auto;
 }
 
+/* Efecto granulado sutil */
 .grain-overlay {
   position: absolute;
   inset: 0;
@@ -264,6 +261,7 @@ body {
   pointer-events: none;
 }
 
+/* Fade granular */
 @keyframes grainFade {
   0% { opacity: 0; filter: contrast(150%) brightness(0.9); }
   50% { opacity: 0.8; filter: contrast(120%) brightness(1.05); }
@@ -274,6 +272,8 @@ body {
 #historial {
   margin-top: 120vh;
   text-align: center;
+  background: none;
+  padding: 8rem 0;
 }
 
 #historial h1 {
@@ -291,13 +291,23 @@ body {
   flex-direction: column;
   gap: 3.5rem;
   align-items: center;
+  width: 100%;
 }
 
 .semana-item {
-  width: 90%;
-  max-width: 850px;
+  width: 92%;
+  max-width: 950px;
   text-align: left;
-  transition: background 0.4s ease;
+  background: #141414;
+  border-radius: 12px;
+  padding: 1.2rem 1.8rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  transition: background 0.4s ease, transform 0.3s ease;
+}
+
+.semana-item:hover {
+  transform: translateY(-4px);
+  background: #1c1c1c;
 }
 
 .semana-item h2 {
@@ -343,38 +353,15 @@ body {
   font-weight: 600;
 }
 
+/* 🟡 Semana actual personas */
 .semana-item.actual .persona {
   color: #f5d76e;
 }
 
-.semana-item:not(:last-child)::after {
-  content: "";
-  display: block;
-  margin-top: 2rem;
-  height: 1px;
-  width: 100%;
-  background: linear-gradient(to right, transparent, #222, transparent);
-}
-
-/* ====== SECCIÓN BETA ====== */
-#beta {
-  margin-top: 8rem;
-  text-align: center;
-  color: #bcbcbc;
-  font-size: 0.95rem;
-  line-height: 1.6;
-  opacity: 0.8;
-  transition: opacity 0.3s ease;
-}
-
-#beta strong {
+/* Hover */
+.semana-item li:hover {
+  border-color: #333;
   color: #fff;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-}
-
-#beta:hover {
-  opacity: 1;
 }
 
 /* ====== RESPONSIVE ====== */
